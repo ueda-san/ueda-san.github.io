@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>htmlfontify</title>
+    <link rel="stylesheet" href="ueda-san.css">
+    <link rel="stylesheet" href="htmlfontify.css">
+    <script src="htmlfontify.js"></script>
+  </head>
+  <body onload="stripe('index'); return true;">
+    <h1>htmlfontify test</h1>
+
+    <h2>c#</h2>
+
+<pre><span class="keyword">using</span> <span class="variable-name">System</span>.<span class="variable-name">Collections</span>;
+<span class="keyword">using</span> <span class="variable-name">System</span>.<span class="variable-name">Collections</span>.<span class="variable-name">Generic</span>;
+<span class="keyword">using</span> <span class="variable-name">UnityEngine</span>;
+
+<span class="keyword">public</span> <span class="keyword">clas</span><span class="keyword">s</span> <span class="type">RingBanner</span> : <span class="type">MonoBehaviour</span>
+{
+	<span class="keyword">public</span> <span class="keyword">static</span> <span class="type">RingBanne</span><span class="type">r</span> <span class="function-name">Create</span>(<span class="type">Vector3</span> <span class="variable-name">pos</span>, <span class="type">float</span> <span class="variable-name">r</span>, <span class="type">float</span> <span class="variable-name">h</span>, <span class="type">string</span> <span class="variable-name">name</span>, <span class="type">Material</span> <span class="variable-name">mat</span>) {
+		<span class="type">GameObjec</span><span class="type">t</span> <span class="variable-name">obj</span> = <span class="keyword">new</span> <span class="type">GameObject</span>(name);
+		<span class="type">RingBanne</span><span class="type">r</span> <span class="variable-name">ring</span> = obj.<span class="function-name">AddComponent</span>&lt;<span class="type">RingBanner</span>&gt;();
+		ring.<span class="function-name">Init</span>(pos, r, h, mat);
+		<span class="keyword">return</span> ring;
+	}
+
+	<span class="type">voi</span><span class="type">d</span> <span class="function-name">Init</span>(<span class="type">Vector3</span> <span class="variable-name">pos</span>, <span class="type">float</span> <span class="variable-name">r</span>, <span class="type">float</span> <span class="variable-name">h</span>, <span class="type">Material</span> <span class="variable-name">mat</span>) {
+		transform.position = pos;
+
+		<span class="type">in</span><span class="type">t</span> <span class="variable-name">n</span> = 32;
+		<span class="type">Vector3</span>[] <span class="variable-name">vert</span> = <span class="keyword">new</span> <span class="type">Vector3</span>[n*2];
+		<span class="type">Vector2</span>[] <span class="variable-name">uv</span> = <span class="keyword">new</span> <span class="type">Vector2</span>[n*2];
+		<span class="keyword">for</span> (<span class="type">in</span><span class="type">t</span> <span class="variable-name">i</span>=0; i&lt;n; i++){
+			<span class="type">floa</span><span class="type">t</span> <span class="variable-name">tmp</span> = Mathf.PI*2.0f;
+			vert[i*2+0] = <span class="keyword">new</span> <span class="type">Vector3</span>(Mathf.<span class="function-name">Cos</span>(tmp*i/n)*r,  h/2, Mathf.<span class="function-name">Sin</span>(tmp*i/n)*r);
+			vert[i*2+1] = <span class="keyword">new</span> <span class="type">Vector3</span>(Mathf.<span class="function-name">Cos</span>(tmp*i/n)*r, -h/2, Mathf.<span class="function-name">Sin</span>(tmp*i/n)*r);
+			uv[i*2+0] = <span class="keyword">new</span> <span class="type">Vector2</span>(2.0f*i/n, 1.0f);
+			uv[i*2+1] = <span class="keyword">new</span> <span class="type">Vector2</span>(2.0f*i/n, 0.0f);
+		}
+		<span class="type">int</span>[] <span class="variable-name">triangles</span> = <span class="keyword">new</span> <span class="type">int</span>[n*6];
+		<span class="keyword">for</span> (<span class="type">in</span><span class="type">t</span> <span class="variable-name">i</span>=0; i&lt;n; i++){
+			triangles[i*6+0] = (i*2+0)%(n*2);
+			triangles[i*6+1] = (i*2+2)%(n*2);
+			triangles[i*6+2] = (i*2+1)%(n*2);
+			triangles[i*6+3] = (i*2+1)%(n*2);
+			triangles[i*6+4] = (i*2+2)%(n*2);
+			triangles[i*6+5] = (i*2+3)%(n*2);
+		}
+
+		<span class="type">Mes</span><span class="type">h</span> <span class="variable-name">mesh</span> = <span class="keyword">new</span> <span class="type">Mesh</span>();
+		mesh.vertices = vert;
+		mesh.uv = uv;
+		mesh.subMeshCount = 1;
+		mesh.<span class="function-name">SetTriangles</span>(triangles, 0);
+		mesh.<span class="function-name">RecalculateNormals</span>();
+
+		<span class="type">MeshRendere</span><span class="type">r</span> <span class="variable-name">mr</span> = gameObject.<span class="function-name">AddComponent</span>&lt;<span class="type">MeshRenderer</span>&gt;();
+		mr.material = mat;
+		<span class="type">MeshFilte</span><span class="type">r</span> <span class="variable-name">mf</span> = gameObject.<span class="function-name">AddComponent</span>&lt;<span class="type">MeshFilter</span>&gt;();
+		mf.sharedMesh = mesh;
+	}
+
+    <span class="type">voi</span><span class="type">d</span> <span class="function-name">Update</span>() {
+		<span class="type">floa</span><span class="type">t</span> <span class="variable-name">speed</span> = 10.0f;
+		transform.<span class="function-name">Rotate</span>(Vector3.up, speed * Time.deltaTime);
+    }
+}
+</pre>
+
+ </body>
+</html>

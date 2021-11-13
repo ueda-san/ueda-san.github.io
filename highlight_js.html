@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>highlight.js</title>
+    <link rel="stylesheet" href="ueda-san.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+  <body>
+    <h1>highlight.js test</h1>
+
+    <h2>c#</h2>
+    <pre><code>
+Using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RingBanner : MonoBehaviour
+{
+	public static RingBanner Create(Vector3 pos, float r, float h, string name, Material mat) {
+		GameObject obj = new GameObject(name);
+		RingBanner ring = obj.AddComponent&lt;RingBanner&gt;();
+		ring.Init(pos, r, h, mat);
+		return ring;
+	}
+
+	void Init(Vector3 pos, float r, float h, Material mat) {
+		transform.position = pos;
+
+		int n = 32;
+		Vector3[] vert = new Vector3[n*2];
+		Vector2[] uv = new Vector2[n*2];
+		for (int i=0; i&lt;n; i++){
+			float tmp = Mathf.PI*2.0f;
+			vert[i*2+0] = new Vector3(Mathf.Cos(tmp*i/n)*r,  h/2, Mathf.Sin(tmp*i/n)*r);
+			vert[i*2+1] = new Vector3(Mathf.Cos(tmp*i/n)*r, -h/2, Mathf.Sin(tmp*i/n)*r);
+			uv[i*2+0] = new Vector2(2.0f*i/n, 1.0f);
+			uv[i*2+1] = new Vector2(2.0f*i/n, 0.0f);
+		}
+		int[] triangles = new int[n*6];
+		for (int i=0; i&lt;n; i++){
+			triangles[i*6+0] = (i*2+0)%(n*2);
+			triangles[i*6+1] = (i*2+2)%(n*2);
+			triangles[i*6+2] = (i*2+1)%(n*2);
+			triangles[i*6+3] = (i*2+1)%(n*2);
+			triangles[i*6+4] = (i*2+2)%(n*2);
+			triangles[i*6+5] = (i*2+3)%(n*2);
+		}
+
+		Mesh mesh = new Mesh();
+		mesh.vertices = vert;
+		mesh.uv = uv;
+		mesh.subMeshCount = 1;
+		mesh.SetTriangles(triangles, 0);
+		mesh.RecalculateNormals();
+
+		MeshRenderer mr = gameObject.AddComponent&lt;MeshRenderer&gt;();
+		mr.material = mat;
+		MeshFilter mf = gameObject.AddComponent&lt;MeshFilter&gt;();
+		mf.sharedMesh = mesh;
+	}
+
+    void Update() {
+		float speed = 10.0f;
+		transform.Rotate(Vector3.up, speed * Time.deltaTime);
+    }
+}
+    </code></pre>
+
+  </body>
+</html>

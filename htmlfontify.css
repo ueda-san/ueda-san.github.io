@@ -1,0 +1,11 @@
+body, pre { font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  color: #000000;  font-size: 12pt;  text-decoration: none; }
+span.default   { font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  color: #000000;  font-size: 12pt;  text-decoration: none; }
+span.default a { font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  color: #000000;  font-size: 12pt;  text-decoration: underline; }
+span.function-name   { color: #0000ff;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: none; }
+span.function-name a { color: #0000ff;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: underline; }
+span.type   { color: #228b22;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: none; }
+span.type a { color: #228b22;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: underline; }
+span.variable-name   { color: #a0522d;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: none; }
+span.variable-name a { color: #a0522d;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: underline; }
+span.keyword   { color: #a020f0;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: none; }
+span.keyword a { color: #a020f0;  font-family: Ricty Diminished;  font-stretch: normal;  font-weight: 500;  font-style: normal;  font-size: 12pt;  text-decoration: underline; }
