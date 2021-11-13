@@ -1,0 +1,21 @@
+.d-none{
+    display: none;
+}
+.accordion-header{
+    background: #ccc;
+    display: block;
+    margin-bottom: 1px;
+    padding: 10px;
+}
+.accordion-body{
+    border: 1px solid #ccc;
+    height: 0;
+    transition: .2s;
+    opacity: 0;
+    visibility: hidden;
+}
+.d-none:checked + .accordion-header + .accordion-body{
+    height: 5em;
+    opacity: 1;
+    visibility: visible;
+}
